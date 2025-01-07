@@ -1,9 +1,14 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+)
 
 func main() {
-	averageOpenRate, displayMessage := .23, "is the average open rate of your messages"
-	fmt.Println(averageOpenRate, displayMessage)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprint(w, "Hello World")
+	})
+	fmt.Println("Listening on port 8080")
+	http.ListenAndServe(":8080", nil)
 }
-
